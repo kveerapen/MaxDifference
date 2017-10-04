@@ -1,0 +1,63 @@
+public class MaximumArray {
+			
+	public static void main(String[] args) {
+		
+		
+		int [] array = 	{7,	2,	3,	10,	2,	4,	8,	1};		//Array includes n represented as (a[0]), followed by the actual array I'm working with.
+		int n = array[0];									// n is the size of the array
+		int i;
+	
+		
+		int [] newArray = new int[array.length-1];						//Create new array without the n
+		for( i = 1; i < array.length; i++){
+			newArray[i-1] = array[i];
+			}
+		
+		
+		for(int element : array){								//Print the original array and newArray in the console. Requires a for loop to print each element.
+			System.out.print(element + " ");
+			}
+			System.out.println();
+			for(int element : newArray){
+			System.out.print(element + " ");
+			}
+			System.out.println();
+			
+		
+	    int max = array[array.length - 1];								//max defines the maximum element in the array
+      	
+		int currentSmallest = newArray[0];							//currentSmallest and biggestDif are zero'd to start with.
+		int biggestDif = 0;
+		
+        
+      	
+		if (n <= 1 || n >= (2*105)) {								//Constraint 1:  1 ≤ n ≤ 2 × 105 
+		 
+				System.out.println(-1);
+		}
+			else if	(max > 106 || array[0] < -106) {					//Constraint 2: −106 ≤ a[i] ≤ 106 ∀ i ∈ [0, n − 1]
+		
+				System.out.println(-1);							//If constraints are not met then -1 is printed in the console.
+				
+		}
+			else {		
+		
+		
+		for(int element : newArray){								//for loop cycles through each element in the newArray
+        
+		if(element < currentSmallest){								//if statement finds the first element in the array and assigns it as the currentSmallest. Ensuring the element in newArray is always smaller than the currentSmallest.
+			currentSmallest = element;
+			}
+        
+		int tempDif = element - currentSmallest;						//tempDif is the temporary difference between the element used in the for loop and the currentSmallest.
+       
+		if(tempDif > biggestDif){ 								//we check if tempDif is greater than biggestDif (since this is what we are looking for).
+			biggestDif = tempDif;
+			}		
+		    }		
+              
+		System.out.println(biggestDif);								//Finally once the foor loop has concluded, we can print the biggest Dif AKA Maximum Difference.
+			}
+
+	}
+	}
